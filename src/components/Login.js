@@ -1,13 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-    
+    const { push } = useHistory();
+    const [ error, setError ] = useState("");
+    const [ credentials, setCredentials ] = useState({
+        username: "",
+        password: ""
+    })
+
+    const handleChange = e => {
+        
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        axios.post('http://localhost:9000/api/login', credentials)
+            .then(resp => {
+                console.log(resp);
+                localStorage.setItem("token", resp.data.token);
+                push("/view");
+            }).catch(err => {
+                setError(err.response.data.error);
+                
+            })
+    }
+
+
+
+
+
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
         </ModalContainer>
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="text"
+                    name="username"
+                    value={credentials.username}
+                    onChange={handleChange}
+                    placeholder='username'
+                    id="username"
+                />
+                <input 
+                    type="password"
+                    name="password"
+                    value={credentials.password}
+                    onChange={handleChange}
+                    placeholder='password'
+                    id="password"
+                />
+                <button id="submit">Log in</button>
+            </form>
+        </div>
+        <div>
+            {error && <p>{error}</p>}
+        </div>
     </ComponentContainer>);
 }
 
@@ -26,6 +84,7 @@ const ComponentContainer = styled.div`
     justify-content: center;
     align-items: center;
     display:flex;
+    flex-direction: column;
 `
 
 const ModalContainer = styled.div`
