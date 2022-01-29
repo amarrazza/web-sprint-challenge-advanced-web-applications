@@ -19,6 +19,7 @@ const Login = () => {
         })
     }
 
+    //creating authorization token in local storage
     const handleSubmit = e => {
         e.preventDefault();
         axios.post('http://localhost:9000/api/login', credentials)
@@ -41,7 +42,7 @@ const Login = () => {
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
         </ModalContainer>
-        <div>
+        <LoginDiv>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <input 
@@ -62,9 +63,9 @@ const Login = () => {
                 />
                 <button id="submit">Log in</button>
             </form>
-        </div>
+        </LoginDiv>
         <div>
-            {error && <p>{error}</p>}
+            {error && <p id='error'>{error}</p>}
         </div>
     </ComponentContainer>);
 }
@@ -113,4 +114,14 @@ const Input = styled.input`
 const Button = styled.button`
     padding:1rem;
     width: 100%;
+`
+const LoginDiv = styled.div`
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 3%;
+    width: 100%;
+    padding-bottom: 5%;
 `

@@ -118,8 +118,20 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+    A security token is used to gain access to a restricted electronic resource such as a webpage. They allow someone to verify their identity.
+
 2. What steps can you take in your web apps to keep your data secure?
+
+Storing a user's data in cookies, not local storage, and using encryption.
 
 3. Describe how web servers work.
 
+    A web server is hardware that stores the web server software and the website's files. The web server receives a request from the client via HTTP, finds what was requested, and sends it back. 
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+    POST - Create
+    GET - Read
+    PUT - Update
+    DELETE - Delete
+

@@ -8,8 +8,8 @@ const Header = () => {
             <p>Blogger Pro</p>
             <MenuStyle>
                 <li><Link to="/">Login</Link></li>
-                <li><Link to="view">View</Link></li>
-                <li><Link to="logout">Logout</Link></li>
+                <li><Link to="/view">View</Link></li>
+                <li><Link to="/logout">Logout</Link></li>
             </MenuStyle>
         </HeaderStyle>
     );
